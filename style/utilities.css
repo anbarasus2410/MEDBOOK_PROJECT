@@ -1,0 +1,148 @@
+/* styles/utilities.css */
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header__content {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .nav__list {
+        gap: var(--space-4);
+    }
+
+    .hero__content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero__features {
+        justify-content: center;
+    }
+
+    .hero__actions {
+        justify-content: center;
+    }
+
+    .hero__graphic {
+        display: none;
+    }
+
+    .filter-tabs {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: var(--space-2);
+    }
+
+    .emergency__content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .form__actions {
+        flex-direction: column;
+    }
+
+    .btn--large {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--space-3);
+    }
+
+    .section {
+        padding: var(--space-12) 0;
+    }
+
+    .service-grid,
+    .doctors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .date-picker__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .footer__content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .header__actions,
+    .hero__visual,
+    .emergency__contacts,
+    .footer {
+        display: none;
+    }
+
+    .hero {
+        background: none;
+        color: var(--text-primary);
+    }
+
+    .btn {
+        border: 1px solid var(--text-primary);
+        background: none;
+        color: var(--text-primary);
+    }
+
+    a::after {
+        content: " (" attr(href) ")";
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    :root {
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --border: #000000;
+        --background: #ffffff;
+    }
+
+    .service-card,
+    .doctor-card,
+    .booking-form {
+        border-width: 2px;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* CSS-only Filtering (Basic implementation) */
+.doctor-card {
+    display: block;
+}
+
+/* Show all when all is selected */
+#all:checked ~ .doctors-grid .doctor-card {
+    display: block;
+}
+
+/* Hide cards that don't match selected specialty */
+#cardiology:checked ~ .doctors-grid .doctor-card:not([data-specialty="cardiology"]) {
+    display: none;
+}
+
+#orthopedics:checked ~ .doctors-grid .doctor-card:not([data-specialty="orthopedics"]) {
+    display: none;
+}
+
+#ophthalmology:checked ~ .doctors-grid .doctor-card:not([data-specialty="ophthalmology"]) {
+    display: none;
+}
